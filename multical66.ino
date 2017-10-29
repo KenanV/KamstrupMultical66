@@ -18,7 +18,7 @@ void setup () {
   pinMode(PIN_LED, OUTPUT);
   digitalWrite(PIN_LED, 0);
   
-  //Wait 30seconds before transmitting anything, since the TX wire has 
+  //Wait 30 seconds before transmitting anything, since the TX wire has 
   //to be reconnected after programming
   delay(30000);
 }
@@ -36,7 +36,7 @@ void loop () {
 // kamReadReq - send a Kamstrup request and return response through COM port
 float kamReadReq(byte req) {
   
-// prepare message to send and send it
+// prepare message to send -and send it
   byte sendmsg[] = { '/', '#', req, 0x0D, 0x0A};
 
   int rxnum=0;
@@ -47,7 +47,7 @@ float kamReadReq(byte req) {
     rxdata[i]= 8;
   }
 
-  //Switch too 300baud for sending request
+  //Switch too 300 baud for sending request
   Serial.begin(300, SERIAL_7E2); 
   for (int i = 0; i < 5; i++) {
     Serial.write(sendmsg[i]); //Send request
@@ -55,7 +55,7 @@ float kamReadReq(byte req) {
   Serial.end();
   Serial.flush();
 
-  //Switch to 1200 baud ro read response
+  //Switch to 1200 baud to read response
   Serial.begin(1200, SERIAL_7E2);
   // listen if we get an answer
   rxnum = kamReceive();
